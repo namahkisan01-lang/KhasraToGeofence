@@ -1,0 +1,15 @@
+node_modules/
+.env
+.env.local
+*.log
+.DS_Store
+
+# Backend cache files
+backend/data/*.sqlite
+backend/data/*.sqlite-journal
+backend/data/*.sqlite-wal
+backend/data/*.sqlite-shm
+
+# Frontend build output
+frontend/.next/
+frontend/out/
