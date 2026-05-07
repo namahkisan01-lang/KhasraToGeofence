@@ -7,10 +7,11 @@ services:
     startCommand: node src/server.js
     plan: free
     envVars:
-      - key: PORT
-        value: 4000
+      # Don't hardcode PORT here -- Render auto-injects it (typically 10000)
+      # and our server reads process.env.PORT. Setting it ourselves breaks
+      # Render's health checks.
       - key: CORS_ORIGIN
-        sync: false                # set in dashboard after frontend URL is known
+        sync: false                # set in dashboard after kg-frontend URL is known
       - key: LEVEL_TTL_SECONDS
         value: 604800
 
@@ -25,4 +26,4 @@ services:
       - key: NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
         sync: false                # set in dashboard
       - key: NEXT_PUBLIC_API_BASE
-        sync: false                # set in dashboard after backend URL is known
+        sync: false                # set in dashboard after kg-backend URL is known
