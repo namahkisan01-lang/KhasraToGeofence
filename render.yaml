@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: kg-backend
+    runtime: node
+    rootDir: up-bhunaksha-portal/backend
+    buildCommand: npm install
+    startCommand: node src/server.js
+    plan: free
+    envVars:
+      - key: PORT
+        value: 4000
+      - key: CORS_ORIGIN
+        sync: false                # set in dashboard after frontend URL is known
+      - key: LEVEL_TTL_SECONDS
+        value: 604800
+
+  - type: web
+    name: kg-frontend
+    runtime: node
+    rootDir: up-bhunaksha-portal/frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    plan: free
+    envVars:
+      - key: NEXT_PUBLIC_GOOGLE_MAPS_API_KEY
+        sync: false                # set in dashboard
+      - key: NEXT_PUBLIC_API_BASE
+        sync: false                # set in dashboard after backend URL is known
